@@ -223,4 +223,15 @@
       100% 100%,
       8px 8px;
   }
+
+  /* Scroll reveal base states */
+  .sr-base {
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .sr-up { opacity: 0; transform: translateY(32px); }
+  .sr-left { opacity: 0; transform: translateX(-32px); }
+  .sr-right { opacity: 0; transform: translateX(32px); }
+  .sr-fade { opacity: 0; }
+  .sr-visible { opacity: 1 !important; transform: none !important; }
 }

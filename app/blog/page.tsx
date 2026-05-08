@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
+import { ScrollReveal } from "@/components/landing/scroll-reveal";
 import { ArrowRight } from "lucide-react";
 
 const featured = {
@@ -134,56 +135,58 @@ export default function BlogPage() {
       {/* Hero */}
       <section className="relative pt-40 pb-24 border-b border-foreground/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-8">
-            <span className="w-8 h-px bg-foreground/30" />
-            Insights
-          </span>
-          <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-tight mb-8">
-            From the
-            <br />
-            <span className="text-stroke">SEA FAN team.</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            Engineering deep-dives, product thinking, and market insights on
-            enterprise AI in Southeast Asia.
-          </p>
+          <ScrollReveal direction="up">
+            <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-8">
+              <span className="w-8 h-px bg-foreground/30" />
+              Insights
+            </span>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={100}>
+            <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-tight mb-8">
+              From the
+              <br />
+              <span className="text-stroke">SEA FAN team.</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={200}>
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              Engineering deep-dives, product thinking, and market insights on
+              enterprise AI in Southeast Asia.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Featured post */}
       <section id="featured" className="border-b border-foreground/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <div
-            className="grid lg:grid-cols-12 gap-8 py-16 lg:py-24 group"
-          >
-            <div className="lg:col-span-4 flex flex-col justify-between">
-              <div>
-                <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-4">
-                  Featured
-                </span>
-                <span className="px-2 py-0.5 border border-foreground/20 text-xs font-mono">
-                  {featured.category}
-                </span>
+          <ScrollReveal direction="up">
+            <div className="grid lg:grid-cols-12 gap-8 py-16 lg:py-24 group">
+              <div className="lg:col-span-4 flex flex-col justify-between">
+                <div>
+                  <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest block mb-4">
+                    Featured
+                  </span>
+                  <span className="px-2 py-0.5 border border-foreground/20 text-xs font-mono">
+                    {featured.category}
+                  </span>
+                </div>
+                <div className="mt-8 lg:mt-0">
+                  <p className="text-xs text-muted-foreground font-mono">
+                    {featured.date} · {featured.readTime}
+                  </p>
+                </div>
               </div>
-              <div className="mt-8 lg:mt-0">
-                <p className="text-xs text-muted-foreground font-mono">
-                  {featured.date} · {featured.readTime}
+              <div className="lg:col-span-8">
+                <h2 className="font-display text-3xl lg:text-5xl leading-tight mb-6 group-hover:text-muted-foreground transition-colors">
+                  {featured.title}
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl">
+                  {featured.excerpt}
                 </p>
               </div>
             </div>
-            <div className="lg:col-span-8">
-              <h2 className="font-display text-3xl lg:text-5xl leading-tight mb-6 group-hover:text-muted-foreground transition-colors">
-                {featured.title}
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-8 max-w-2xl">
-                {featured.excerpt}
-              </p>
-              {/* <span className="inline-flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all">
-                Read article
-                <ArrowRight className="w-4 h-4" />
-              </span> */}
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -222,34 +225,33 @@ export default function BlogPage() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10">
-              {filtered.map((post) => (
-                <div
-                  key={post.slug}
-                  className="bg-background p-8 lg:p-10 flex flex-col gap-6 hover:bg-foreground/[0.02] transition-colors group"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="px-2 py-0.5 border border-foreground/20 text-xs font-mono">
-                      {post.category}
-                    </span>
-                    <span className="text-xs text-muted-foreground font-mono">
-                      {post.readTime}
-                    </span>
+              {filtered.map((post, i) => (
+                <ScrollReveal key={post.slug} direction="up" delay={i * 60}>
+                  <div className="bg-background p-8 lg:p-10 flex flex-col gap-6 hover:bg-foreground/2 transition-colors group h-full">
+                    <div className="flex items-center justify-between">
+                      <span className="px-2 py-0.5 border border-foreground/20 text-xs font-mono">
+                        {post.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground font-mono">
+                        {post.readTime}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-display text-xl lg:text-2xl leading-tight mb-4 group-hover:text-muted-foreground transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between pt-4 border-t border-foreground/10">
+                      <span className="text-xs text-muted-foreground font-mono">
+                        {post.date}
+                      </span>
+                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-xl lg:text-2xl leading-tight mb-4 group-hover:text-muted-foreground transition-colors">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                  </div>
-                  <div className="flex items-center justify-between pt-4 border-t border-foreground/10">
-                    <span className="text-xs text-muted-foreground font-mono">
-                      {post.date}
-                    </span>
-                    {/* <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" /> */}
-                  </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           )}
@@ -260,34 +262,38 @@ export default function BlogPage() {
       <section id="newsletter" className="py-32 border-t border-foreground/10 bg-foreground/[0.02]">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-6">
-                Newsletter
-              </span>
-              <h2 className="font-display text-4xl lg:text-5xl tracking-tight mb-4">
-                Stay current on
-                <br />
-                enterprise AI in SEA.
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                New articles on engineering, compliance, and market trends —
-                delivered twice a month. No noise.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="your@company.com"
-                className="flex-1 bg-transparent border border-foreground/20 px-4 h-12 text-sm focus:outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/50"
-              />
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 h-12 text-sm font-medium hover:bg-foreground/90 transition-colors whitespace-nowrap"
-              >
-                Subscribe
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
+            <ScrollReveal direction="left">
+              <div>
+                <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-6">
+                  Newsletter
+                </span>
+                <h2 className="font-display text-4xl lg:text-5xl tracking-tight mb-4">
+                  Stay current on
+                  <br />
+                  enterprise AI in SEA.
+                </h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  New articles on engineering, compliance, and market trends —
+                  delivered twice a month. No noise.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal direction="right" delay={100}>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="your@company.com"
+                  className="flex-1 bg-transparent border border-foreground/20 px-4 h-12 text-sm focus:outline-none focus:border-foreground transition-colors placeholder:text-muted-foreground/50"
+                />
+                <a
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 h-12 text-sm font-medium hover:bg-foreground/90 transition-colors whitespace-nowrap"
+                >
+                  Subscribe
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>

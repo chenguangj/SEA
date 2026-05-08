@@ -1,5 +1,8 @@
+"use client";
+
 import { Navigation } from "@/components/landing/navigation";
 import { FooterSection } from "@/components/landing/footer-section";
+import { ScrollReveal } from "@/components/landing/scroll-reveal";
 import { ArrowRight, Zap, Moon, Bell, Globe } from "lucide-react";
 
 const modules = [
@@ -97,20 +100,26 @@ export default function SolutionsPage() {
       {/* Hero */}
       <section className="relative pt-40 pb-24 border-b border-foreground/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-          <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-8">
-            <span className="w-8 h-px bg-foreground/30" />
-            Platform Architecture
-          </span>
-          <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-tight mb-8">
-            Four engines.
-            <br />
-            <span className="text-stroke">One platform.</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
-            SEA FAN AI runs on four parallel modules — each triggered
-            differently, each optimized for a distinct workload. Together they
-            drive enterprise-grade AI operations across Southeast Asia.
-          </p>
+          <ScrollReveal direction="up">
+            <span className="inline-flex items-center gap-3 text-sm font-mono text-muted-foreground mb-8">
+              <span className="w-8 h-px bg-foreground/30" />
+              Platform Architecture
+            </span>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={100}>
+            <h1 className="font-display text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-tight mb-8">
+              Four engines.
+              <br />
+              <span className="text-stroke">One platform.</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={200}>
+            <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+              SEA FAN AI runs on four parallel modules — each triggered
+              differently, each optimized for a distinct workload. Together they
+              drive enterprise-grade AI operations across Southeast Asia.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -123,13 +132,13 @@ export default function SolutionsPage() {
               { value: "78%", label: "Batch processing share" },
               { value: "35+", label: "Enterprise clients" },
               { value: "$1M+", label: "Monthly revenue potential" },
-            ].map((stat) => (
-              <div key={stat.label} className="py-10 px-8 first:pl-0">
-                <div className="font-display text-4xl lg:text-5xl mb-2">
-                  {stat.value}
+            ].map((stat, i) => (
+              <ScrollReveal key={stat.label} direction="up" delay={i * 80}>
+                <div className="py-10 px-8 first:pl-0">
+                  <div className="font-display text-4xl lg:text-5xl mb-2">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -138,64 +147,44 @@ export default function SolutionsPage() {
       {/* Modules */}
       <section id="modules" className="py-32 lg:py-40">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 space-y-px">
-          {modules.map((mod) => {
+          {modules.map((mod, i) => {
             const Icon = mod.icon;
             return (
-              <div
-                key={mod.id}
-                className="border border-foreground/10 p-8 lg:p-12 grid lg:grid-cols-2 gap-12 hover:bg-foreground/[0.02] transition-colors"
-              >
-                <div>
-                  <div className="flex items-center gap-4 mb-6">
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {mod.id}
-                    </span>
-                    <span className="px-2 py-0.5 border border-foreground/20 text-xs font-mono">
-                      {mod.tag}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {mod.trigger}
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-4 mb-6">
-                    <Icon className="w-6 h-6 mt-1 shrink-0" />
-                    <h2 className="font-display text-3xl lg:text-4xl leading-tight">
-                      {mod.name}
-                    </h2>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed mb-8">
-                    {mod.description}
-                  </p>
-                  <div className="grid grid-cols-3 gap-4">
-                    {mod.stats.map((s) => (
-                      <div key={s.label}>
-                        <div className="font-display text-2xl mb-1">
-                          {s.value}
+              <ScrollReveal key={mod.id} direction="up" delay={i * 60}>
+                <div className="border border-foreground/10 p-8 lg:p-12 grid lg:grid-cols-2 gap-12 hover:bg-foreground/[0.02] transition-colors">
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="font-mono text-xs text-muted-foreground">{mod.id}</span>
+                      <span className="px-2 py-0.5 border border-foreground/20 text-xs font-mono">{mod.tag}</span>
+                      <span className="text-xs text-muted-foreground">{mod.trigger}</span>
+                    </div>
+                    <div className="flex items-start gap-4 mb-6">
+                      <Icon className="w-6 h-6 mt-1 shrink-0" />
+                      <h2 className="font-display text-3xl lg:text-4xl leading-tight">{mod.name}</h2>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed mb-8">{mod.description}</p>
+                    <div className="grid grid-cols-3 gap-4">
+                      {mod.stats.map((s) => (
+                        <div key={s.label}>
+                          <div className="font-display text-2xl mb-1">{s.value}</div>
+                          <div className="text-xs text-muted-foreground">{s.label}</div>
                         </div>
-                        <div className="text-xs text-muted-foreground">
-                          {s.label}
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-6">Capabilities</h3>
+                    <ul className="space-y-4">
+                      {mod.features.map((f) => (
+                        <li key={f} className="flex items-start gap-3 text-sm text-muted-foreground">
+                          <span className="w-1 h-1 rounded-full bg-foreground mt-2 shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-mono text-muted-foreground uppercase tracking-widest mb-6">
-                    Capabilities
-                  </h3>
-                  <ul className="space-y-4">
-                    {mod.features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-start gap-3 text-sm text-muted-foreground"
-                      >
-                        <span className="w-1 h-1 rounded-full bg-foreground mt-2 shrink-0" />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -206,52 +195,36 @@ export default function SolutionsPage() {
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-6">
-                Technical Foundation
-              </span>
-              <h2 className="font-display text-5xl lg:text-6xl tracking-tight mb-8">
-                Why Claude
-                <br />
-                200K context?
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Our four-module architecture is only possible because of
-                Claude's 200K token context window. Nightly batch processing
-                requires ingesting an entire day's conversation corpus in a
-                single pass — no other model handles this reliably at
-                production scale.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Beyond context length, Claude's instruction-following
-                consistency and native Southeast Asian language capability are
-                non-negotiable for our compliance-grade enterprise clients.
-              </p>
+              <ScrollReveal direction="left">
+                <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase block mb-6">
+                  Technical Foundation
+                </span>
+                <h2 className="font-display text-5xl lg:text-6xl tracking-tight mb-8">
+                  Why Claude
+                  <br />
+                  200K context?
+                </h2>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  Our four-module architecture is only possible because of Claude's 200K token context window. Nightly batch processing requires ingesting an entire day's conversation corpus in a single pass — no other model handles this reliably at production scale.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Beyond context length, Claude's instruction-following consistency and native Southeast Asian language capability are non-negotiable for our compliance-grade enterprise clients.
+                </p>
+              </ScrollReveal>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                {
-                  title: "200K Context Window",
-                  desc: "Ingest full conversation history and policy documents in a single pass",
-                },
-                {
-                  title: "Long-text Stability",
-                  desc: "Consistent output quality across the full context length — critical for batch jobs",
-                },
-                {
-                  title: "Instruction Following",
-                  desc: "Compliance-grade adherence to enterprise policy rules and tone guidelines",
-                },
-                {
-                  title: "11 SEA Languages",
-                  desc: "Native-quality Thai, Vietnamese, Malay, Indonesian, Filipino, and more",
-                },
-              ].map((item) => (
-                <div key={item.title} className="border border-foreground/10 p-6">
-                  <h3 className="font-medium text-sm mb-2">{item.title}</h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
+                { title: "200K Context Window", desc: "Ingest full conversation history and policy documents in a single pass" },
+                { title: "Long-text Stability", desc: "Consistent output quality across the full context length — critical for batch jobs" },
+                { title: "Instruction Following", desc: "Compliance-grade adherence to enterprise policy rules and tone guidelines" },
+                { title: "11 SEA Languages", desc: "Native-quality Thai, Vietnamese, Malay, Indonesian, Filipino, and more" },
+              ].map((item, i) => (
+                <ScrollReveal key={item.title} direction="right" delay={i * 80}>
+                  <div className="border border-foreground/10 p-6 hover:border-foreground/30 transition-colors">
+                    <h3 className="font-medium text-sm mb-2">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -261,27 +234,21 @@ export default function SolutionsPage() {
       {/* CTA */}
       <section className="py-32 border-t border-foreground/10">
         <div className="max-w-[1400px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="font-display text-5xl lg:text-6xl tracking-tight mb-6">
-            Ready to deploy?
-          </h2>
-          <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
-            Talk to our team about which modules fit your enterprise workflow.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 h-14 text-base rounded-full hover:bg-foreground/90 transition-colors group"
-            >
-              Contact Sales
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="/#pricing"
-              className="inline-flex items-center justify-center gap-2 border border-foreground/20 px-8 h-14 text-base rounded-full hover:bg-foreground/5 transition-colors"
-            >
-              View Pricing
-            </a>
-          </div>
+          <ScrollReveal direction="up">
+            <h2 className="font-display text-5xl lg:text-6xl tracking-tight mb-6">Ready to deploy?</h2>
+            <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
+              Talk to our team about which modules fit your enterprise workflow.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/contact" className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 h-14 text-base rounded-full hover:bg-foreground/90 transition-colors group">
+                Contact Sales
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a href="/pricing" className="inline-flex items-center justify-center gap-2 border border-foreground/20 px-8 h-14 text-base rounded-full hover:bg-foreground/5 transition-colors">
+                View Pricing
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
