@@ -6,28 +6,29 @@ import { AnimatedWave } from "./animated-wave";
 type FooterLink = { name: string; href: string; badge?: string };
 
 const footerLinks: Record<string, FooterLink[]> = {
-  Product: [
-    { name: "Solutions", href: "/solutions#modules" },
-    { name: "Pricing", href: "/pricing#plans" },
-    { name: "Case Studies", href: "/case-studies#clients" },
-    { name: "Blog", href: "/blog#featured" },
+  Solutions: [
+    { name: "Platform Overview", href: "/solutions" },
+    { name: "Key Metrics", href: "/solutions#metrics" },
+    { name: "Four Modules", href: "/solutions#modules" },
+    { name: "Why Claude 200K", href: "/solutions#why-claude" },
   ],
-  Platform: [
-    { name: "Real-time Chat", href: "/solutions#modules" },
-    { name: "Batch Processing", href: "/solutions#metrics" },
-    { name: "Proactive Outreach", href: "/solutions#modules" },
-    { name: "Multilingual KB", href: "/solutions#why-claude" },
-  ],
-  Company: [
-    { name: "About Us", href: "/about" },
-    { name: "Blog", href: "/blog#newsletter" },
-    { name: "Contact", href: "/contact" },
-    { name: "Careers", href: "/contact"},
+  "Case Studies": [
+    { name: "All Clients", href: "/case-studies" },
+    { name: "Platform Stats", href: "/case-studies#stats" },
+    { name: "Client Results", href: "/case-studies#clients" },
+    { name: "Talk to Sales", href: "/contact" },
   ],
   About: [
-    { name: "Company Overview", href: "/about#privacy" },
+    { name: "Our Mission", href: "/about#privacy" },
     { name: "Our Values", href: "/about#terms" },
     { name: "Company Details", href: "/about#security" },
+    { name: "Contact Us", href: "/contact" },
+  ],
+  Blog: [
+    { name: "All Articles", href: "/blog" },
+    { name: "Featured", href: "/blog#featured" },
+    { name: "Newsletter", href: "/blog#newsletter" },
+    { name: "Pricing", href: "/pricing#plans" },
   ],
 };
 
